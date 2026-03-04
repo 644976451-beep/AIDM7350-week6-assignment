@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leshi Lin | Digital Media Portfolio</title>
+    <!-- 引入谷歌字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- Hero Section --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out;
+        }
+        .blob-1 { top: 10%; left: 10%; width: 300px; height: 300px; background: #4f46e5; border-radius: 40% 60% 70% 30%; }
+        .blob-2 { bottom: 10%; right: 10%; width: 400px; height: 400px; background: #0ea5e9; border-radius: 60% 40% 30% 70%; animation-delay: -5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        header h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--accent);
+            z-index: -1;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover::before { width: 100%; }
+        .btn:hover { color: #0f172a; box-shadow: 0 0 20px var(--accent-glow); }
+
+        /* --- Skills Section --- */
+        .skills-section {
+            padding: 5rem 10%;
+            background: #0f172a;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: 0.3s;
+        }
+
+        .skill-item:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            transform: translateY(-3px);
+        }
+
+        /* --- Projects Section --- */
+        .projects {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            margin-bottom: 6rem;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:nth-child(even) {
+            direction: rtl; 
+        }
+        .project-card:nth-child(even) .project-info {
+            direction: ltr;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid var(--glass-border);
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            /* 移除 aspect-ratio 以允许内部按钮撑开高度，但保持视频比例 */
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+        }
+
+        .video-container video, .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border: none;
+        }
+
+        /* --- FALLBACK BUTTON STYLES (CRITICAL FIX) --- */
+        .video-fallback {
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.95);
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .fallback-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 6px 12px;
+            border: 1px dashed var(--accent);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .fallback-link:hover {
+            background: var(--accent);
+            color: #0f172a;
+            border-style: solid;
+            transform: translateY(-1px);
+        }
+
+        .fallback-icon {
+            font-size: 1.1rem;
+        }
+        /* ---------------------------------------- */
+
+        .project-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            border: 1px solid var(--accent);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: #64748b;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem;
+        }
+
+        /* --- Contact --- */
+        .contact {
+            padding: 5rem 10%;
+            text-align: center;
+            background: linear-gradient(to top, #1e293b, #0f172a);
+        }
+
+        .contact h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .contact p { color: var(--text-secondary); margin-bottom: 2rem; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.8rem; }
+            .project-card, .project-card:nth-child(even) {
+                grid-template-columns: 1fr;
+                direction: ltr;
+                gap: 1.5rem;
+            }
+            .nav-links { display: none; } 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <div class="logo">LESHI <span>LIN</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="hero-content">
+            <!-- 标题保持不变 -->
+            <span class="hero-subtitle">DISCOVERY MULTIMEDIA NARRATIVE</span>
+            <h1>Explore.<br>Discover.<br>Create.</h1>
+            <p>I craft compelling digital narratives through video, audio, and strategic storytelling. From viral museum tours to social documentaries.</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </header>
+
+    <!-- Skills -->
+    <section id="about" class="skills-section">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2 style="font-size: 2rem;">Core Competencies</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-item">Scriptwriting & Storyboarding</div>
+            <div class="skill-item">Video Editing (CapCut/Premiere)</div>
+            <div class="skill-item">Adobe Audition (Audio Post)</div>
+            <div class="skill-item">Photoshop & Visual Design</div>
+            <div class="skill-item">Internet Sense & Trend Analysis</div>
+            <div class="skill-item">End-to-End Production</div>
+            <div class="skill-item">Documentary Filmmaking</div>
+            <div class="skill-item">Collaborative Production</div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">Selected Works</h2>
+
+        <!-- Project 1: Museum (Unchanged) -->
+        <div class="project-card">
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <video controls poster="https://images.unsplash.com/photo-1599557497406-2956743d2d79?auto=format&fit=crop&q=80&w=1000">
+                        <source src="https://www.dropbox.com/scl/fi/mwk42p8dlnhc3crt1kdd6/.mp4?rlkey=iqbzqa9g1frpvxei02vf69k8n&st=zuj35zer&dl=1" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="project-info">
+                <span class="project-tag">Collaboration / Cultural</span>
+                <h3>Museum Publicity Video</h3>
+                <p class="project-desc">
+                    Collaborated with <strong>CNR</strong> and <strong>Guangzhou Museum</strong> to bring artifacts to life. 
+                    I handled scriptwriting, filming, and editing, incorporating engaging voiceovers to enhance audience interaction. 
+                    The video achieved over 10,000 views, successfully exploring museums from a young person's perspective.
+                </p>
+                <div class="project-meta">
+                    <span>Role: Director & Editor</span>
+                    <span>Year: 2023</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2: The Same (Unchanged) -->
+        <div class="project-card">
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <video controls poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1000">
+                        <source src="https://www.dropbox.com/scl/fi/5iat2s1kvot2pakn5kg2d/.mp4?rlkey=z05nbd4tlvzicbd1mluq36d3k&st=bp8woslq&dl=1" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="project-info">
+                <span class="project-tag">Independent / Short Film</span>
+                <h3>"The Same" (一样)</h3>
+                <p class="project-desc">
+                    An original short play exploring the tension between individuals, rules, and morality. 
+                    Featuring multiple plot twists, this project integrates multimedia technology with dynamic and static filming techniques 
+                    to prompt viewers to reflect on contemporary moral values.
+                </p>
+                <div class="project-meta">
+                    <span>Role: Writer & Actor</span>
+                    <span>Style: Narrative</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: Documentary (Unchanged) -->
+        <div class="project-card">
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <video controls poster="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&q=80&w=1000">
+                        <source src="https://www.dropbox.com/scl/fi/wolu3gbri333rf28nb6ir/.mp4?rlkey=aheeya6v9ym9ytuov6qdj5i16&st=6bog9c8o&dl=1" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="project-info">
+                <span class="project-tag">Documentary / Social Impact</span>
+                <h3>Every Menstrual Cycle is the Moon and Tides</h3>
+                <p class="project-desc">
+                    A poignant short documentary focusing on real-life experiences of women during menstruation. 
+                    Responsible for scriptwriting and filming, this project aims to raise awareness and encourage attention 
+                    to women's issues in the era of short-form media.
+                </p>
+                <div class="project-meta">
+                    <span>Role: Cinematographer</span>
+                    <span>Topic: Women's Health</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4: VLOG (WITH FALLBACK BUTTON ADDED) -->
+        <div class="project-card">
+            <div class="video-wrapper">
+                <!-- Video Container -->
+                <div class="video-container">
+                    <video controls poster="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1000">
+                        <source src="https://1drv.ms/v/c/c2d782ad08003164/IQDjPo3YvvkfSIjwDBcHFDDeAQ-ByAOTXIoBGrgPM5bkvn0?download=1" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <!-- !!! FALLBACK BUTTON IS HERE !!! -->
+                <div class="video-fallback">
+                    <a href="https://1drv.ms/v/c/c2d782ad08003164/IQDjPo3YvvkfSIjwDBcHFDDeAQ-ByAOTXIoBGrgPM5bkvn0?e=wcL4S0" target="_blank" class="fallback-link">
+                        <span class="fallback-icon">🔗</span>
+                        Unable to play? Watch on OneDrive
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-info">
+                <span class="project-tag">Personal Vlog / Lifestyle</span>
+                <h3>Daily Life & Travel Vlog</h3>
+                <p class="project-desc">
+                    A dynamic vlog showcasing my unique perspective on daily life and travel. 
+                    Demonstrating strong <strong>"Internet Sense"</strong> by capturing trending moments and engaging pacing. 
+                    I independently managed the entire production lifecycle: from conceptualizing the script and on-site filming to advanced editing using <strong>CapCut</strong>, ensuring a polished, rhythmic final cut that resonates with online audiences.
+                </p>
+                <div class="project-meta">
+                    <span>Role: Solo Creator (Script, Shoot, Edit)</span>
+                    <span>Tool: CapCut</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <h2>Let's Create Together</h2>
+        <p>Currently seeking opportunities for the MSc in Design and Digital Media.</p>
+        <a href="mailto:your.email@example.com" class="btn">Get In Touch</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Leshi Lin. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
